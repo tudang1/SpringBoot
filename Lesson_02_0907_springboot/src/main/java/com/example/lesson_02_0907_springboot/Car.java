@@ -24,4 +24,7 @@ public class Car {
         this.brand = brand;
         this.model = model;
     }
+
+    public Car() {
+    }
 }
