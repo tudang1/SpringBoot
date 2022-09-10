@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,6 +82,21 @@ public class Controller {
             }
         });
         return ResponseEntity.ok().body(list);
+    }
+    @GetMapping("/add/{a}/{b}")
+    @ResponseBody
+    public int add(@PathVariable("a") int a, @PathVariable("b") int b) {
+        return a + b;
+    }
+    @GetMapping("/name/{your_name}")
+    @ResponseBody
+    public String hi(@PathVariable("your_name") String yourName) {
+        return "Hi " + yourName;
+    }
+    @GetMapping("/add")
+    @ResponseBody
+    public int add2(@RequestParam("a") int a, @RequestParam("b") int b) {
+        return a + b;
     }
 
 }
