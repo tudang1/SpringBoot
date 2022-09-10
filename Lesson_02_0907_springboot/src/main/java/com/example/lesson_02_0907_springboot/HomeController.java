@@ -33,7 +33,7 @@ public class HomeController {
     public ResponseEntity<List<Car>> getAllCar(){
         CarRepository carRepository = new CarRepository();
         ArrayList<CarRepository> arr = new ArrayList<>();
-        
+
 
         return ResponseEntity.ok().body(carRepo.getAllCar());
     }
