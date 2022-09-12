@@ -16,10 +16,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Repository
-@Service
+
 public class BookRepository {
     private ArrayList<Book> book = new ArrayList<>();
-    // nhiệm vụ của constructor này là đọc dữ liệu file Json vào một Arraylist<Car>
+    // nhiệm vụ của constructor này là đọc dữ liệu file Json vào một Arraylist<Book>
     public BookRepository(){
         try {
             File file = ResourceUtils.getFile("classpath:static/book.json");
