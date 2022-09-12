@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -32,9 +33,8 @@ public class Controller {
         PersonRepository personRepository = new PersonRepository();
         ArrayList<Person> arr = new ArrayList<>();
 
-        arr.stream().count();
-        return arr.stream().count();
 
+        return null;
     }
 
 }

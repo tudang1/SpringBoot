@@ -9,7 +9,10 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 @Service
@@ -31,5 +34,21 @@ public class PersonRepository {
 
     public static List<Person> getAllPerson() {
         return person;
+    }
+//    public static Map<String, Integer> countPeopleByNationality() {
+//        HashMap<String, Integer> result = new HashMap<>();
+//        for (Person person : person) {
+//            if (result.get(person.getNationality()) == null) {
+//                result.put(person.getNationality(), 1);
+//            } else {
+//                result.put(person.getNationality(), result.get(person.getNationality()) + 1);
+//            }
+//        }
+//        return result;
+//    }
+    public static Map<String,Long> countPeopleNationality(){
+        return person
+                .stream()
+                .collect(Collectors.groupingBy(Person::getNationality, Collectors.counting()));
     }
 }
