@@ -33,6 +33,7 @@ public class BookController {
 
   @PostMapping
   public Book createNewBook(@RequestBody BookRequest bookRequest) {
+    int uid = UUID.randomUUID().clockSequence();
     String uuid = UUID.randomUUID().toString();
     Book newBook = new Book(uuid, bookRequest.title(), bookRequest.author(), bookRequest.year());
     books.put(uuid, newBook);
