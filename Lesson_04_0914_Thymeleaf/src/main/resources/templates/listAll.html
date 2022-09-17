@@ -7,28 +7,34 @@
     <title>Title</title>
 </head>
 <body>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Job</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Birthdate</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-<!--        vòng lặp chuyển đổi từ people sang person-->
-    <tr th:each="person, iStat:${people}" th:classappend="${person.gender=='male'} ? 'table-primay' : 'table-warning'">
-        <th scope="row" th:text="${iStat.index} +1"></th>
-        <td th:text="${person.name}"></td>
-        <td th:text="${person.job}"></td>
-        <td th:text="${person.gender}"></td>
-        <td th:text="${person.birthdate}"></td>
-        <td><a th:href="@{/listAll/{id}(id=${person.id})}">Infor</a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <h1>Welcome</h1>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Job</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Birthdate</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--        vòng lặp chuyển đổi từ people sang person-->
+        <tr th:each="person, iStat:${people}" th:classappend="${person.gender=='male'} ? 'table-primay' : 'table-warning'">
+            <th scope="row" th:text="${iStat.index} +1"></th>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.job}"></td>
+            <td th:text="${person.gender}"></td>
+            <td th:text="${person.birthdate}"></td>
+            <td><a th:href="@{/listAll/{id}(id=${person.id})}">Infor</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
