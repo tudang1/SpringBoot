@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
-    PersonMapper personToPojo(Person customer);
+    PersonPojo personToPojo(Person customer);
     Person pojoToPerson(PersonPojo poJo);
 }
