@@ -11,14 +11,18 @@
       <th scope="col">#</th>
       <th scope="col">Brand</th>
       <th scope="col">Manufacturer</th>
+      <th scope="col">Pic</th>
       <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="car,iCount:${cars}">
-      <th scope="row" th:text="${iCount.index+1}"></th>
+    <tr th:each="car,iter:${cars}">
+      <td th:text="${iter.index + 1}"></th>
       <td th:text="${car.brand}"></td>
       <td th:text="${car.manufacturer}"></td>
+      <td>
+        <img th:src="@{/photos/{name}.jpeg(name=${car.photo})}" class="img-fluid">
+      </td>
       <td>
         <a th:src="@{/photos/{name}.jpeg(name=${car.photo})}" class="img-fluid">Photos</a>
       </td>

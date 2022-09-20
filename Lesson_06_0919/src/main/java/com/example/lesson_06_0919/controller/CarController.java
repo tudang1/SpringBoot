@@ -25,13 +25,8 @@ public class CarController {
     }
 
     @GetMapping("/listAll")
-    public String getAll(Model model, @RequestParam(value = "direction",required = false)String direction){
-        if(direction==null){
-            model.addAttribute("customers",repo.getAllCar());
-        }else{
-            List<Car> customers = repo.sort(direction);
-            model.addAttribute("customers",customers);
-        }
+    public String listAll(Model model){
+        model.addAttribute("cars",repo.getAllCar());
         return "list";
     }
     @GetMapping("/search")
