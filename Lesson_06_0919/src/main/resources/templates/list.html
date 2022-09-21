@@ -21,7 +21,7 @@
       <td th:text="${car.brand}"></td>
       <td th:text="${car.manufacturer}"></td>
       <td>
-        <img th:src="@{/photos/{name}.jpeg(name=${car.photo})}" class="img-fluid">
+        <img th:src="@{/photos/{name}.jpg(name=${car.photo})}" class="img-fluid">
       </td>
       <td>
         <a th:src="@{/photos/{name}.jpeg(name=${car.photo})}" class="img-fluid">Photos</a>
