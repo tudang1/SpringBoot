@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index::Heading">
+<body>
+<div class="container">
+  <div class="card mb-5 my-auto mx-auto" style="max-width: 540px;">
+    <div class="row g-2 my-auto mx-auto" >
+      <div class="col-md-4 ">
+        <img th:src="@{/photos/{name}.jpg(name=${product.photo})}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${product.name}"></h5>
+          <p class="card-text" th:text="${product.category}"></p>
+          <p class="card-text" th:text="${product.detail}"></p>
+          <a th:href="@{'/product/edit/' + ${product.id}}" class="btn btn-primary">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

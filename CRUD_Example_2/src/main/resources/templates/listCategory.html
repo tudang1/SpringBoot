@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace = "index::Heading"></head>
+<body>
+<div class="container">
+    <div th:replace="index::menu"></div>
+        <table class="table">
+            <thead>
+            <th>#</th>
+            <th >Category</th>
+            <th ></th>
+            </thead>
+            <tbody>
+            <tr th:each="category,iter:${categories}">
+                <td th:text="${iter.index + 1}"></td>
+                <td>
+                    <a th:action="@{/searchCategory}" method="get">
+                        <span th:text="${category.name}"></span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+</body>
+</html>
