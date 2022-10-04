@@ -36,7 +36,8 @@ console.log(random_hex_color_code());
 console.log("bai 4");
 const randomRGB = () =>{
     const random = () => Math.floor(Math.random()*255);
-}
+    return `rgb(${random()},${random()},${random()})`;
+};
 let student = {
     name: "Nguyễn Văn A",
     age: 19,
