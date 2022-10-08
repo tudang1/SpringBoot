@@ -2,14 +2,13 @@ package com.example.crud_example_2.controller;
 
 import com.example.crud_example_2.model.Product;
 import com.example.crud_example_2.repository.ProductRepository;
+import com.example.crud_example_2.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -19,9 +18,12 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private StorageService storageService;
     @GetMapping
     public String home(Model model){
         model.addAttribute("product",new Product());
+
         return "index";
     }
     @GetMapping("/listProduct")
@@ -48,7 +50,8 @@ public class ProductController {
             }else{
                 productRepository.create(product);
             }
-            model.addAttribute("product", productRepository.getProducts());
+            storageService.uploadFile(product.getPhoto(), product.getId());
+            model.addAttribute("products", productRepository.getProducts());
             return "redirect:/listProduct";
         }
         return "index";
@@ -63,7 +66,9 @@ public class ProductController {
     }
     @GetMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id, Model model){
+        storageService.deleteFile(id);
         productRepository.deleteByID(id);
+
         model.addAttribute("product",productRepository.getProducts());
         return "redirect:/listProduct";
     }
@@ -106,4 +111,7 @@ public class ProductController {
         model.addAttribute("product",product);
         return "detail";
     }
+
+
+
 }

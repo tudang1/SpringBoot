@@ -13,10 +13,10 @@ public class ProductRepository {
     private List<Category> categories = new ArrayList<>();
     public ProductRepository(){
         List<Product> listProduct = Arrays.asList(
-                new Product(1,"Nuts","Drama","Integer pede justo, lacinia eget, tincidunt eget","movie_1"),
-                new Product(2,"Avatar","Drama","Integer pede justo, lacinia eget, tincidunt eget","movie_2"),
-                new Product(3,"Avenger: End Game","Crime","Integer pede justo, lacinia eget, tincidunt eget","movie_3"),
-                new Product(4,"50 Banh Trung","Action","Integer pede justo, lacinia eget, tincidunt eget","movie_4")
+//                new Product(1,"Nuts","Drama","Integer pede justo, lacinia eget, tincidunt eget","movie_1"),
+//                new Product(2,"Avatar","Drama","Integer pede justo, lacinia eget, tincidunt eget","movie_2"),
+//                new Product(3,"Avenger: End Game","Crime","Integer pede justo, lacinia eget, tincidunt eget","movie_3"),
+//                new Product(4,"50 Banh Trung","Action","Integer pede justo, lacinia eget, tincidunt eget","movie_4")
         );
         listProduct.forEach(c->products.add(c));
 
@@ -37,7 +37,7 @@ public class ProductRepository {
         listCategory.forEach(c->categories.add(c));
     }
     public List<Product> getProducts(){return products;}
-    public List<Category> getCategories(){return categories;}
+
     public Optional<Product> get(int id){
         return products.stream().filter(c->c.getId()==id).findFirst();
     }
@@ -63,7 +63,9 @@ public class ProductRepository {
         return product;
     }
     public void deleteByID(int id){
+
         get(id).ifPresent(existed ->products.remove(existed));
+
     }
     public Product search(String name){
         return products.stream().filter(product -> product.getName().contains(name)).findAny().orElse(null);

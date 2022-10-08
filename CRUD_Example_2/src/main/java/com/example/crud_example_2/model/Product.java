@@ -19,7 +19,7 @@ public class Product {
     private String category;
     @NotBlank(message = "Detail not null")
     private String detail;
-    @NotBlank(message = "Please input your photo")
-    private String photo;
+
+    private MultipartFile photo;
 
 }
