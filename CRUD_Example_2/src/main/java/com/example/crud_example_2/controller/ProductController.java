@@ -31,7 +31,7 @@ public class ProductController {
     @GetMapping
     public String home(Model model){
         model.addAttribute("product",new Product());
-
+        model.addAttribute("categories",categoryRepository.getCategories());
         return "index";
     }
     @GetMapping("/listProduct")
