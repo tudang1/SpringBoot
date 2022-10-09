@@ -37,7 +37,7 @@ public class ProductRepository {
         listCategory.forEach(c->categories.add(c));
     }
     public List<Product> getProducts(){return products;}
-
+    public List<Category> getCategories(){return categories;}
     public Optional<Product> get(int id){
         return products.stream().filter(c->c.getId()==id).findFirst();
     }
