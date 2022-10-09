@@ -1,6 +1,7 @@
 package com.example.crud_example_2.controller;
 
 import com.example.crud_example_2.model.Product;
+import com.example.crud_example_2.repository.CategoryRepository;
 import com.example.crud_example_2.repository.ProductRepository;
 import com.example.crud_example_2.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ProductController {
     private StorageService storageService;
     @Autowired
     private MessageSource messageSource;
+    @Autowired
+    private CategoryRepository categoryRepository;
     @GetMapping
     public String home(Model model){
         model.addAttribute("product",new Product());
@@ -36,11 +39,7 @@ public class ProductController {
         model.addAttribute("products",productRepository.getProducts());
         return "listProduct";
     }
-    @GetMapping("/listCategory")
-    public String listCategory(Model model){
-        model.addAttribute("categories",productRepository.getCategories());
-        return "listCategory";
-    }
+
 
     @GetMapping("/create")
     public String showFrom(Model model){
@@ -117,11 +116,6 @@ public class ProductController {
         model.addAttribute("product",product);
         return "detail";
     }
-    @GetMapping("/listProduct/{category}")
-    public String detail(@PathVariable("category") String category, Model model){
-        Product product = (Product) productRepository.getCategories();
-        model.addAttribute("product",product);
-        return "detail";
-    }
+
 
 }

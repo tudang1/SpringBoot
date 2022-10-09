@@ -6,17 +6,21 @@
     <div th:replace="index::menu"></div>
         <table class="table">
             <thead>
-            <th>#</th>
+            <th >#</th>
             <th >Category</th>
-            <th ></th>
+            <th >Action</th>
             </thead>
             <tbody>
-            <tr th:each="category,iter:${categories}">
+            <tr th:each="cat,iter:${cats}">
                 <td th:text="${iter.index + 1}"></td>
                 <td>
                     <a th:action="@{/searchCategory}" method="get">
-                        <span th:text="${category.name}"></span>
+                        <span th:text="${cat.name}"></span>
                     </a>
+                </td>
+                <td>
+                    <span><a th:href="@{/cat/edit/{id}(id=${cat.id})}">Edit</a></span>&nbsp;
+                    <span><a th:href="@{/cat/delete/{id}(id=${cat.id})}">Delete</a></span>
                 </td>
             </tr>
             </tbody>
