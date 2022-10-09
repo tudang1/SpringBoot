@@ -32,6 +32,7 @@ public class StorageService {
             Files.copy(is, Paths.get(address), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             var msg = String.format("Failed to store file %s", fileName);
+            System.out.println(msg);
             throw new StorageException(msg, e);
         }
     }

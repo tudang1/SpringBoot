@@ -4,6 +4,8 @@ import com.example.crud_example_2.model.Product;
 import com.example.crud_example_2.repository.ProductRepository;
 import com.example.crud_example_2.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -20,6 +23,8 @@ public class ProductController {
     private ProductRepository productRepository;
     @Autowired
     private StorageService storageService;
+    @Autowired
+    private MessageSource messageSource;
     @GetMapping
     public String home(Model model){
         model.addAttribute("product",new Product());
@@ -42,8 +47,15 @@ public class ProductController {
         model.addAttribute("product",new Product());
         return "showForm";
     }
-    @PostMapping("/post")
+    @PostMapping(value = "/post",consumes = {"multipart/form-data"})
     public String postInfo(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
+        //tạo message khi chèn photo
+        Locale locale = LocaleContextHolder.getLocale();
+        if (product.getPhoto().getOriginalFilename().isEmpty()) {
+            result.addError(new FieldError("product", "photo",
+                    messageSource.getMessage("photo.required", null, "Photo required", locale)));
+        }
+        
         if (!result.hasErrors()) {
             if(product.getId()>0){
                 productRepository.edit(product);
