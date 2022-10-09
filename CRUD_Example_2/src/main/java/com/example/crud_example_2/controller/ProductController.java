@@ -74,6 +74,7 @@ public class ProductController {
             model.addAttribute("product",product.get());
             model.addAttribute("categories",categoryRepository.getCategories());
         }
+        //có thể tạo 1 form riêng để sửa nhưng lười(nhưng vẫn phải dùng giao diện cũ)
         return "index";
     }
     @GetMapping("/product/delete/{id}")
