@@ -55,7 +55,7 @@ public class ProductController {
             result.addError(new FieldError("product", "photo",
                     messageSource.getMessage("photo.required", null, "Photo required", locale)));
         }
-        
+
         if (!result.hasErrors()) {
             if(product.getId()>0){
                 productRepository.edit(product);
