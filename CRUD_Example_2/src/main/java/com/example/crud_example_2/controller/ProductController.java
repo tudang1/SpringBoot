@@ -72,6 +72,7 @@ public class ProductController {
         Optional<Product> product = productRepository.get(id);
         if(product.isPresent()){
             model.addAttribute("product",product.get());
+            model.addAttribute("categories",categoryRepository.getCategories());
         }
         return "index";
     }
